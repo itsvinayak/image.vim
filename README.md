@@ -24,11 +24,13 @@ Requirements
 Installation
 ============
 * [Pathogen](https://github.com/tpope/vim-pathogen)
-  *  `git clone https://github.com/ashisha/image.vim ~/.vim/bundle/image.vim`
+  *  `git clone https://github.com/itsvinayak/image.vim ~/.vim/bundle/image.vim`
+* [plug](https://github.com/junegunn/vim-plug)
+  *  `Plug 'itsvinayak/image.vim'`
 * [Vundle](https://github.com/gmarik/vundle)
-  * `Plugin 'ashisha/image.vim'`
+  * `Plugin 'itsvinayak/image.vim'`
 * [NeoBundle](https://github.com/Shougo/neobundle.vim)
-  * `NeoBundle 'ashisha/image.vim'`
+  * `NeoBundle 'itsvinayak/image.vim'`
 * Manual
   * Copy image.vim into your `~/.vim/plugin/` directory
 
