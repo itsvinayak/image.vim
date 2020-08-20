@@ -1,7 +1,7 @@
 command! -nargs=0 Image call DisplayImage()
 
-if !has("python3")
-    echo "image.vim requires python3 support"
+if !has("pythonx")
+    echo "image.vim requires python support"
     finish
 endif
 
@@ -9,10 +9,18 @@ au BufRead *.png,*.jpg,*.jpeg :call DisplayImage()
 
 function! DisplayImage()
 set nowrap
-python3 << EOF
+
+pyx << EOF
 from __future__ import division
 import vim
 from PIL import Image
+
+try:
+    # Python 2
+    xrange
+except NameError:
+    # Python 3, xrange is now named range
+    xrange = range
 
 def getAsciiImage(imageFile, maxWidth, maxHeight):
     try:
@@ -53,9 +61,9 @@ def getAsciiImage(imageFile, maxWidth, maxHeight):
     # clear the buffer
     vim.current.buffer[:] = None
 
-    for y in range(scaledHeight):
+    for y in xrange(scaledHeight):
         asciiImage = ""
-        for x in range(scaledWidth):
+        for x in xrange(scaledWidth):
             rgb = pixels[x, y]
             if not isinstance(rgb, tuple):
                 rgb = (rgb,)
@@ -63,7 +71,7 @@ def getAsciiImage(imageFile, maxWidth, maxHeight):
         vim.current.buffer.append(asciiImage)
 
     return asciiImage
-    
+
 vim.command("let imagefile = expand('%:p')")
 imagefile = vim.eval("imagefile")
 
